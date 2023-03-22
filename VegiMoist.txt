@@ -1,0 +1,25 @@
+#include <DHT.h>
+
+#define DHTPIN 2     // Digital pin connected to the DHT sensor
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
+
+DHT dht(DHTPIN, DHTTYPE); // Create an instance of the DHT class
+
+void setup() {
+  Serial.begin(9600); // Start the serial communication
+  dht.begin(); // Initialize the DHT sensor
+}
+
+void loop() {
+  float temperature = dht.readTemperature(); // Read the temperature value
+  float humidity = dht.readHumidity(); // Read the humidity value
+  
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.print(" °C\t");
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println("%");
+  
+  delay(2000); // Wait for 2 seconds before reading the sensor again
+}
